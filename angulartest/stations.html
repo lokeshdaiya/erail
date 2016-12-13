@@ -1,0 +1,32 @@
+﻿<div class="row-fluid clearfix">
+    <div class="top_200 col-lg-offset-2 col-md-10" ng-init="getStations()">
+        <form class="form-inline" name="erailForm">
+            <div class="col-md-3 form-group">
+                <input type="text" placeholder="From" class="form-control input-lg" ng-class="{uiAutocompleteLoading:!stations.length>0}" name="from" ng-model="erail.stnfrom" list="stationlist">
+            </div>
+            <div class="col-sm-1 text-center">
+                <span ng-click="temp=erail.stnfrom;erail.stnfrom=erail.stnto;erail.stnto=temp" class="reverseIcon"><i class="glyphicon glyphicon-sort reverse" /></span>
+            </div>
+            <input type="text" placeholder="To" class="form-control input-lg" ng-class="{uiAutocompleteLoading:!stations.length>0}" name="to" ng-model="erail.stnto" list="stationlist">
+            <input type="date" class="form-control input-lg" ng-model="erail.date">
+            <input type="button" class="btn btn-success btn-lg" value="Submit" ng-click="getTrains()">
+            <datalist id="stationlist">
+                <option ng-repeat="station in stations" value="{{station.name}}-({{station.code}})">
+            </datalist>
+        </form>
+    </div>
+    <div class="col-lg-offset-2 clearfix" style="color:white">
+        <table class="table">
+            <tr>
+                <td>From</td>
+                <td>To</td>
+                <td>Date</td>
+            </tr>
+            <tr ng-repeat="train in searchedtrains" ng-click="erail=train" style="cursor:pointer">
+                <td>{{train.stnfrom}}</td>
+                <td>{{train.stnto}}</td>
+                <td>{{train.date}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿<div class="row-fluid clearfix">
+    <div class="col-md-2"></div>
+    <div class="top_200 col-lg-offset-4 col-md-8">
+        <!--<form name="erail">
+            <div class="col-lg-6 col-lg-offset-4 form-group">
+                <input type="text" placeholder="Enter pnr no" class="form-control" ng-model="erail.pnr" required>
+                <input type="button" class="btn btn-success" value="Submit" ng-click="getPnrStatus()" ng-disabled="">
+            </div>
+          </form>-->
+        <form class="form-inline" name="erailForm" ng-submit="return false;">
+            <div class="form-group">
+                <input class="form-control input-lg" id="pnrno" name="pnrno" placeholder="Enter 10 digit PNR Number" tabindex="1" type="number" maxlength="10" minlength="10" ng-model="erail.pnr" required>
+            </div>
+            <button type="submit" id="submitPnr" class="btn btn-success btn-lg" ng-disabled="erailForm.$invalid" ng-click="getPnrStatus()">Get PNR Status</button>
+        </form>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+<div ng-if="pnrDetails.length>0">
+    <table class="table">
+        <tr>
+            <td>trainno</td>
+            <td>name</td>
+            <td>cls</td>
+            <td>rundays</td>
+        </tr>
+
+    </table>
+</div>

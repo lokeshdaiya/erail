@@ -1,0 +1,24 @@
+﻿<ng-include src="'stations.html'"></ng-include>
+<div ng-if="trains.length>0" ng-init="erail.quota=='GN'" class="col-lg-offset-2 clearfix" style="color:white">
+    <table class="table">
+        <tr>
+            <td>Select Quota :</td>
+            <td><input type="radio" ng-model="erail.quota" value="GN">GENERAL </td>
+            <td><input type="radio" ng-model="erail.quota" value="CK">TatKal</td>
+        </tr>
+        <tr>
+            <td>Train No</td>
+            <td>Mame</td>
+            <td>class</td>
+        </tr>
+        <tr ng-repeat="train in trains">
+            <td>{{train.trainno}}</td>
+            <td>{{train.name}}</td>
+            <td>
+                <span ng-repeat=" class in train.cls track by $index">
+                    <a ng-click="getSeats(class,train.trainno)" href="javascript:void(0)">{{class}}</a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>

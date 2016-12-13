@@ -1,0 +1,22 @@
+﻿<div class="clear_50 row form-inline">
+    <div class="form-group">
+        <input type="text" placeholder="Enter train no" class="form-control" ng-model="erail.trainno">
+    </div>
+    <input type="button" class="btn btn-success" value="Submit" ng-click="getRoutes()">
+</div>
+<div ng-if="routes.length>0">
+    <table class="table">
+        <tr>
+            <td>trainno</td>
+            <td>name</td>
+            <td>cls</td>
+            <td>rundays</td>
+        </tr>
+        <tr ng-repeat="route in routes">
+            <td>{{train.trainno}}</td>
+            <td>{{train.name}}</td>
+            <td>{{train.cls}}</td>
+            <td>{{train.rundays}}</td>
+        </tr>
+    </table>
+</div>

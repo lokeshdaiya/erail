@@ -1,0 +1,13 @@
+{
+  "name": "NodejsApp1",
+  "version": "0.0.0",
+  "description": "NodejsApp1",
+  "main": "server.js",
+  "author": {
+    "name": "v-lodaiy",
+    "email": ""
+  },
+  "dependencies": {
+    "mongoose": "^4.7.1"
+  }
+}
