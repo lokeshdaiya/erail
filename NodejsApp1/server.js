@@ -1,12 +1,56 @@
 var http = require('http');
 var express = require('express');
-//var mongodb = require('mongodb');
+var mongoClient = require('mongodb');
 var utility = require('./utility');
 var port = process.env.port || 1337;
 var app = new express();
-http.createServer(app).listen(port, function () {
-    console.log("Express server started");
-});
+var db;
+connectDb(function(){
+	http.createServer(app).listen(port, function () {
+		console.log("Express server started at "+ port);
+	});
+	});
+
+function connectDb(callback) {
+	//{user:"lokeshld",pass:"lokeshld"}
+    mongoClient.connect("mongodb://lokeshld:lokeshld@ds159747.mlab.com:59747/lokeshtestdb",function (err, dbObject) {
+        if (err) {
+			console.log("connection failed")	
+			console.log(err);
+		}else{
+		console.log("connection success");
+		db=dbObject;
+		callback()
+		}
+    })
+}
+
+function saveData() {
+    var data = {name:"lokesh",age:27,city:"pune",email:"ldlucky2009@gmail.com"}
+    db.collection('user').save(data, function (err, response) {
+        if (err) {
+			console.log("Failed to save data");
+			console.log(err);
+		}else{
+			console.log("Data saved successfully");
+			console.log(response);
+		}
+    })
+}
+function getData() {
+
+db.collection("user").find({}).toArray(function(err,data){
+	if(err){
+		console.log("Error in fetching data");
+	}else{
+		console.log("Data fetched successfully");
+		console.log(data);
+	}
+	
+})
+	
+}	
+
 
 app.all('/*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -15,7 +59,7 @@ app.all('/*', function (req, res, next) {
 });
 
 app.get("/", function (req, res) {
-
+	res.status(200).json(getData());
     res.end("Welcome... we are not exposing all the apis...Contact to admin to get the list");
 })
     //get trains
